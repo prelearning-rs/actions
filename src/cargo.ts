@@ -1,18 +1,22 @@
-import * as core from "@actions/core"
+import { setFailed } from "@actions/core"
 import { parseCargoArgs } from "./cargo-args"
 import { cargoInstall } from "./cargo/install"
 
 const run = async () => {
-    const cargo = await cargoInstall()
-    const cargoArgs = parseCargoArgs()
+    const args = parseCargoArgs()
+    const cargo = await cargoInstall(args.toolchain)
 
-    await cargo.run(cargoArgs)
+    for (const binary of args.binaries) {
+        await cargo.install(binary)
+    }
+
+    await cargo.run(args.args)
 }
 
 try {
     run()
 } catch (error) {
     if (error instanceof Error) {
-        core.setFailed(error.message)
+        setFailed(error.message)
     }
 }

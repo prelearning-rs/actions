@@ -1,0 +1,17 @@
+name: cargo
+description: "Run cargo commands"
+
+inputs:
+    command:
+        description: Cargo command to run
+        required: true
+    toolchain:
+        description: Toolchain to install (https://rust-lang.github.io/rustup/concepts/toolchains.html)
+        required: true
+    install:
+        description: Cargo subcommands to install
+        required: false
+
+runs:
+    using: node16
+    main: ../dist/cargo.js

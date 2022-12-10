@@ -1,26 +1,22 @@
-import * as core from "@actions/core"
+import { getInput } from "@actions/core"
 import { split } from "shlex"
+import { parseToolchain } from "./util/parseToolchain"
 
 export type CargoArgs = {
-    command: string
     args: string[]
+    binaries: string[]
     toolchain?: string
 }
 
 export const parseCargoArgs = (): CargoArgs => {
-    const command = core.getInput("command")
-    const toolchain = core.getInput("toolchain")
-
-    const args = split(command)
-    const firstArg = args.shift()
-
-    if (!firstArg) {
-        throw new Error("No command provided")
-    }
+    const binaries = getInput("install")
+        .split(",")
+        .map((it) => it.trim())
+        .filter(Boolean)
 
     return {
-        command: firstArg,
-        args,
-        toolchain,
+        args: split(getInput("command")),
+        binaries,
+        toolchain: parseToolchain(getInput("toolchain")),
     }
 }

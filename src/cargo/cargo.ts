@@ -1,12 +1,23 @@
 import * as exec from "@actions/exec"
-import { CargoArgs } from "../cargo-args"
 
 export class Cargo {
-    constructor(private cargoPath: string) {}
+    constructor(private cargoPath: string, private toolchain: string | undefined = undefined) {}
 
-    async run(args: CargoArgs, options?: exec.ExecOptions): Promise<void> {
-        const execArgs = args.toolchain ? [`+${args.toolchain}`, ...args.args] : args.args
+    withToolchain(toolchain?: string): Cargo {
+        return new Cargo(this.cargoPath, toolchain)
+    }
 
-        exec.exec(args.command, execArgs, options)
+    async install(binary: string): Promise<number> {
+        return await this.run(["install", binary])
+    }
+
+    async run(args: string[], options?: exec.ExecOptions): Promise<number> {
+        const execArgs = args.slice()
+
+        if (this.toolchain) {
+            execArgs.unshift(`+${this.toolchain}`)
+        }
+
+        return exec.exec(this.cargoPath, execArgs, options)
     }
 }
