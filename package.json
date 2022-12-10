@@ -11,9 +11,9 @@
     },
     "scripts": {
         "postinstall": "husky install",
-        "prebuild": "rimraf lib",
+        "prebuild": "rimraf dist",
         "build": "npm run build:setup-rust",
-        "build:setup-rust": "esbuild src/setup-rust.ts --bundle --outfile=lib/setup-rust.js --platform=node --target=node16",
+        "build:setup-rust": "esbuild src/setup-rust.ts --bundle --outfile=dist/setup-rust.js --platform=node --target=node16",
         "format:check": "prettier --check 'src/**/*.ts'",
         "format:write": "prettier --write 'src/**/*.ts'",
         "lint": "eslint src/**/*.ts",
