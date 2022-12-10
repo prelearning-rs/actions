@@ -26,6 +26,6 @@ export class Rustup {
             rustupArgs.push("--allow-downgrade")
         }
 
-        await exec.exec(this.rustupPath)
+        await exec.exec(this.rustupPath, rustupArgs)
     }
 }
