@@ -17,7 +17,7 @@ export const parseToolchainArgs = (): ToolchainArgs => {
         .filter(Boolean)
 
     if (!toolchain) {
-        throw new Error(`No toolchain provided`)
+        throw new Error("No toolchain provided")
     }
 
     return {

@@ -1,0 +1,6 @@
+name: clippy
+description: "Run clippy"
+
+runs:
+    using: node16
+    main: ../dist/clippy.js
