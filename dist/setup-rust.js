@@ -5110,6 +5110,9 @@ var Rustup = class {
     }
     await exec.exec(this.rustupPath, rustupArgs);
   }
+  async use(toolchain) {
+    await exec.exec(this.rustupPath, ["default", toolchain]);
+  }
 };
 
 // src/rustup/install.ts
@@ -5182,6 +5185,7 @@ var run = async () => {
   const toolchainArgs = parseToolchainArgs();
   const rustup = await rustupInstall();
   await rustup.installToolchain(toolchainArgs);
+  await rustup.use(toolchainArgs.toolchain);
 };
 try {
   run();

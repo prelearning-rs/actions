@@ -8,6 +8,7 @@ const run = async () => {
     const rustup = await rustupInstall()
 
     await rustup.installToolchain(toolchainArgs)
+    await rustup.use(toolchainArgs.toolchain)
 }
 
 try {

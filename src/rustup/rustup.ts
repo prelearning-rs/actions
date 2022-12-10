@@ -28,4 +28,8 @@ export class Rustup {
 
         await exec.exec(this.rustupPath, rustupArgs)
     }
+
+    async use(toolchain: string) {
+        await exec.exec(this.rustupPath, ["default", toolchain])
+    }
 }
