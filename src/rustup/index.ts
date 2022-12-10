@@ -1,0 +1,1 @@
+export { rustupInstall } from "./install"

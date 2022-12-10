@@ -1,0 +1,19 @@
+{
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+        "jest",
+        "@typescript-eslint"
+    ],
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:github/recommended"
+    ],
+    "rules": {
+        "i18n-text/no-en": "off",
+        "import/no-namespace": "off",
+        "no-shadow": "off",
+        "no-unused-vars": "off"
+    }
+}

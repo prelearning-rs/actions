@@ -1,0 +1,17 @@
+name: setup-rust
+description: "Configure a rust toolchain"
+
+inputs:
+    toolchain:
+        description: Toolchain to install (https://rust-lang.github.io/rustup/concepts/toolchains.html)
+        required: true
+    profile:
+        description: Default component group profile to install (https://rust-lang.github.io/rustup/concepts/profiles.html)
+        default: default
+    components:
+        description: Additional components to install (https://rust-lang.github.io/rustup/concepts/components.html)
+        required: false
+
+runs:
+    using: node18
+    main: ../lib/toolchain.js
