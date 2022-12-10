@@ -12,8 +12,9 @@
     "scripts": {
         "postinstall": "husky install",
         "prebuild": "rimraf dist",
-        "build": "npm run build:setup-rust && npm run build:clippy",
+        "build": "npm run build:setup-rust && npm run build:cargo && npm run build:clippy",
         "build:setup-rust": "esbuild src/setup-rust.ts --bundle --outfile=dist/setup-rust.js --platform=node --target=node16",
+        "build:cargo": "esbuild src/cargo.ts --bundle --outfile=dist/cargo.js --platform=node --target=node16",
         "build:clippy": "esbuild src/clippy.ts --bundle --outfile=dist/clippy.js --platform=node --target=node16",
         "format:check": "prettier --check 'src/**/*.ts'",
         "format:write": "prettier --write 'src/**/*.ts'",
