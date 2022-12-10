@@ -1,6 +1,6 @@
 import * as core from "@actions/core"
 import { rustupInstall } from "./rustup"
-import { parseToolchainArgs } from "./toolchain.args"
+import { parseToolchainArgs } from "./setup-rust.args"
 
 const run = async () => {
     const toolchainArgs = parseToolchainArgs()

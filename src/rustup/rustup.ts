@@ -1,6 +1,6 @@
 import * as exec from "@actions/exec"
 
-import { ToolchainArgs } from "../toolchain.args"
+import { ToolchainArgs } from "../setup-rust.args"
 
 /**
  * An interface into the rustup toolchain manager.

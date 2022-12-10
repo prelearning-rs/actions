@@ -14,4 +14,4 @@ inputs:
 
 runs:
     using: node16
-    main: ../lib/toolchain.js
+    main: ../lib/setup-rust.js
