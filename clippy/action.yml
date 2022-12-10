@@ -1,6 +1,14 @@
 name: clippy
 description: "Run clippy"
 
+inputs:
+    toolchain:
+        description: Toolchain to run clippy with
+        required: false
+    args:
+        description: Additional arguments to pass to clippy
+        required: false
+
 runs:
     using: node16
     main: ../dist/clippy.js

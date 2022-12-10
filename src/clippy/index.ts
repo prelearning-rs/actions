@@ -1,0 +1,1 @@
+export { consumeClippyMessage } from "./diagnostic"

@@ -731,18 +731,18 @@ var require_tunnel = __commonJS({
             res.statusCode
           );
           socket.destroy();
-          var error2 = new Error("tunneling socket could not be established, statusCode=" + res.statusCode);
-          error2.code = "ECONNRESET";
-          options.request.emit("error", error2);
+          var error3 = new Error("tunneling socket could not be established, statusCode=" + res.statusCode);
+          error3.code = "ECONNRESET";
+          options.request.emit("error", error3);
           self.removeSocket(placeholder);
           return;
         }
         if (head.length > 0) {
           debug("got illegal response body from proxy");
           socket.destroy();
-          var error2 = new Error("got illegal response body from proxy");
-          error2.code = "ECONNRESET";
-          options.request.emit("error", error2);
+          var error3 = new Error("got illegal response body from proxy");
+          error3.code = "ECONNRESET";
+          options.request.emit("error", error3);
           self.removeSocket(placeholder);
           return;
         }
@@ -757,9 +757,9 @@ var require_tunnel = __commonJS({
           cause.message,
           cause.stack
         );
-        var error2 = new Error("tunneling socket could not be established, cause=" + cause.message);
-        error2.code = "ECONNRESET";
-        options.request.emit("error", error2);
+        var error3 = new Error("tunneling socket could not be established, cause=" + cause.message);
+        error3.code = "ECONNRESET";
+        options.request.emit("error", error3);
         self.removeSocket(placeholder);
       }
     };
@@ -1551,12 +1551,12 @@ var require_oidc_utils = __commonJS({
         var _a;
         return __awaiter(this, void 0, void 0, function* () {
           const httpclient = OidcClient.createHttpClient();
-          const res = yield httpclient.getJson(id_token_url).catch((error2) => {
+          const res = yield httpclient.getJson(id_token_url).catch((error3) => {
             throw new Error(`Failed to get ID Token. 
  
-        Error Code : ${error2.statusCode}
+        Error Code : ${error3.statusCode}
  
-        Error Message: ${error2.result.message}`);
+        Error Message: ${error3.result.message}`);
           });
           const id_token = (_a = res.result) === null || _a === void 0 ? void 0 : _a.value;
           if (!id_token) {
@@ -1577,8 +1577,8 @@ var require_oidc_utils = __commonJS({
             const id_token = yield OidcClient.getCall(id_token_url);
             core_1.setSecret(id_token);
             return id_token;
-          } catch (error2) {
-            throw new Error(`Error message: ${error2.message}`);
+          } catch (error3) {
+            throw new Error(`Error message: ${error3.message}`);
           }
         });
       }
@@ -1898,7 +1898,7 @@ var require_core = __commonJS({
       process.env["PATH"] = `${inputPath}${path.delimiter}${process.env["PATH"]}`;
     }
     exports.addPath = addPath;
-    function getInput(name, options) {
+    function getInput2(name, options) {
       const val = process.env[`INPUT_${name.replace(/ /g, "_").toUpperCase()}`] || "";
       if (options && options.required && !val) {
         throw new Error(`Input required and not supplied: ${name}`);
@@ -1908,9 +1908,9 @@ var require_core = __commonJS({
       }
       return val.trim();
     }
-    exports.getInput = getInput;
+    exports.getInput = getInput2;
     function getMultilineInput(name, options) {
-      const inputs = getInput(name, options).split("\n").filter((x) => x !== "");
+      const inputs = getInput2(name, options).split("\n").filter((x) => x !== "");
       if (options && options.trimWhitespace === false) {
         return inputs;
       }
@@ -1920,7 +1920,7 @@ var require_core = __commonJS({
     function getBooleanInput(name, options) {
       const trueValue = ["true", "True", "TRUE"];
       const falseValue = ["false", "False", "FALSE"];
-      const val = getInput(name, options);
+      const val = getInput2(name, options);
       if (trueValue.includes(val))
         return true;
       if (falseValue.includes(val))
@@ -1944,7 +1944,7 @@ Support boolean input list: \`true | True | TRUE | false | False | FALSE\``);
     exports.setCommandEcho = setCommandEcho;
     function setFailed2(message) {
       process.exitCode = ExitCode.Failure;
-      error2(message);
+      error3(message);
     }
     exports.setFailed = setFailed2;
     function isDebug() {
@@ -1955,10 +1955,10 @@ Support boolean input list: \`true | True | TRUE | false | False | FALSE\``);
       command_1.issueCommand("debug", {}, message);
     }
     exports.debug = debug;
-    function error2(message, properties = {}) {
+    function error3(message, properties = {}) {
       command_1.issueCommand("error", utils_1.toCommandProperties(properties), message instanceof Error ? message.toString() : message);
     }
-    exports.error = error2;
+    exports.error = error3;
     function warning2(message, properties = {}) {
       command_1.issueCommand("warning", utils_1.toCommandProperties(properties), message instanceof Error ? message.toString() : message);
     }
@@ -2834,7 +2834,7 @@ var require_toolrunner = __commonJS({
               this._debug(`STDIO streams have closed for tool '${this.toolPath}'`);
               state.CheckComplete();
             });
-            state.on("done", (error2, exitCode) => {
+            state.on("done", (error3, exitCode) => {
               if (stdbuffer.length > 0) {
                 this.emit("stdline", stdbuffer);
               }
@@ -2842,8 +2842,8 @@ var require_toolrunner = __commonJS({
                 this.emit("errline", errbuffer);
               }
               cp.removeAllListeners();
-              if (error2) {
-                reject(error2);
+              if (error3) {
+                reject(error3);
               } else {
                 resolve(exitCode);
               }
@@ -2938,14 +2938,14 @@ var require_toolrunner = __commonJS({
         this.emit("debug", message);
       }
       _setResult() {
-        let error2;
+        let error3;
         if (this.processExited) {
           if (this.processError) {
-            error2 = new Error(`There was an error when attempting to execute the process '${this.toolPath}'. This may indicate the process failed to start. Error: ${this.processError}`);
+            error3 = new Error(`There was an error when attempting to execute the process '${this.toolPath}'. This may indicate the process failed to start. Error: ${this.processError}`);
           } else if (this.processExitCode !== 0 && !this.options.ignoreReturnCode) {
-            error2 = new Error(`The process '${this.toolPath}' failed with exit code ${this.processExitCode}`);
+            error3 = new Error(`The process '${this.toolPath}' failed with exit code ${this.processExitCode}`);
           } else if (this.processStderr && this.options.failOnStdErr) {
-            error2 = new Error(`The process '${this.toolPath}' failed because one or more lines were written to the STDERR stream`);
+            error3 = new Error(`The process '${this.toolPath}' failed because one or more lines were written to the STDERR stream`);
           }
         }
         if (this.timeout) {
@@ -2953,7 +2953,7 @@ var require_toolrunner = __commonJS({
           this.timeout = null;
         }
         this.done = true;
-        this.emit("done", error2, this.processExitCode);
+        this.emit("done", error3, this.processExitCode);
       }
       static HandleTimeout(state) {
         if (state.done) {
@@ -3081,8 +3081,200 @@ var require_exec = __commonJS({
   }
 });
 
+// node_modules/shlex/shlex.js
+var require_shlex = __commonJS({
+  "node_modules/shlex/shlex.js"(exports) {
+    "use strict";
+    var Shlexer = class {
+      constructor(string) {
+        this.i = 0;
+        this.string = string;
+        this.whitespace = " 	\r\n";
+        this.quotes = `'"`;
+        this.escapes = "\\";
+        this.escapedQuotes = '"';
+        this.ansiCQuotes = true;
+        this.localeQuotes = true;
+        this.debug = false;
+      }
+      readChar() {
+        return this.string.charAt(this.i++);
+      }
+      processEscapes(string, quote, isAnsiCQuote) {
+        if (!isAnsiCQuote && !this.escapedQuotes.includes(quote)) {
+          return string;
+        }
+        const anyEscape = "[" + this.escapes.replace(/(.)/g, "\\$1") + "]";
+        if (!isAnsiCQuote && this.escapedQuotes.includes(quote)) {
+          const re = new RegExp(
+            anyEscape + "(" + anyEscape + "|\\" + quote + ")",
+            "g"
+          );
+          return string.replace(re, "$1");
+        }
+        if (isAnsiCQuote) {
+          const patterns = {
+            "([\\\\'\"?])": (x) => x,
+            "a": () => "\x07",
+            "b": () => "\b",
+            "e|E": () => "\x1B",
+            "f": () => "\f",
+            "n": () => "\n",
+            "r": () => "\r",
+            "t": () => "	",
+            "v": () => "\v",
+            "([0-7]{1,3})": (x) => String.fromCharCode(parseInt(x, 8)),
+            "x([0-9a-fA-F]{1,2})": (x) => String.fromCharCode(parseInt(x, 16)),
+            "u([0-9a-fA-F]{1,4})": (x) => String.fromCharCode(parseInt(x, 16)),
+            "U([0-9a-fA-F]{1,8})": (x) => String.fromCharCode(parseInt(x, 16)),
+            "c(.)": (x) => {
+              if (x === "?") {
+                return "\x7F";
+              } else if (x === "@") {
+                return "\0";
+              } else {
+                return String.fromCharCode(x.charCodeAt(0) & 31);
+              }
+            }
+          };
+          const re = new RegExp(
+            anyEscape + "(" + Object.keys(patterns).join("|") + ")",
+            "g"
+          );
+          return string.replace(re, function(m, p1) {
+            for (const matched in patterns) {
+              const mm = new RegExp("^" + matched + "$").exec(p1);
+              if (mm === null) {
+                continue;
+              }
+              return patterns[matched].apply(null, mm.slice(1));
+            }
+          });
+        }
+        return void 0;
+      }
+      *[Symbol.iterator]() {
+        let inQuote = false;
+        let inDollarQuote = false;
+        let escaped = false;
+        let lastDollar = -2;
+        let token;
+        if (this.debug) {
+          console.log("full input:", ">" + this.string + "<");
+        }
+        while (true) {
+          const pos = this.i;
+          const char = this.readChar();
+          if (this.debug) {
+            console.log(
+              "position:",
+              pos,
+              "input:",
+              ">" + char + "<",
+              "accumulated:",
+              token,
+              "inQuote:",
+              inQuote,
+              "inDollarQuote:",
+              inDollarQuote,
+              "lastDollar:",
+              lastDollar,
+              "escaped:",
+              escaped
+            );
+          }
+          if (char === "") {
+            if (inQuote) {
+              throw new Error("Got EOF while in a quoted string");
+            }
+            if (escaped) {
+              throw new Error("Got EOF while in an escape sequence");
+            }
+            if (token !== void 0) {
+              yield token;
+            }
+            return;
+          }
+          if (escaped) {
+            if (char === "\n") {
+            } else if (inQuote) {
+              token = (token || "") + escaped + char;
+            } else {
+              token = (token || "") + char;
+            }
+            escaped = false;
+            continue;
+          }
+          if (this.escapes.includes(char)) {
+            if (!inQuote || inDollarQuote !== false || this.escapedQuotes.includes(inQuote)) {
+              escaped = char;
+              continue;
+            } else {
+            }
+          }
+          if (inQuote !== false) {
+            if (char === inQuote) {
+              token = this.processEscapes(token, inQuote, inDollarQuote === "'");
+              inQuote = false;
+              inDollarQuote = false;
+              continue;
+            }
+            token = (token || "") + char;
+            continue;
+          }
+          if (this.quotes.includes(char)) {
+            inQuote = char;
+            if (lastDollar === pos - 1) {
+              if (char === "'" && !this.ansiCQuotes) {
+              } else if (char === '"' && !this.localeQuotes) {
+              } else {
+                inDollarQuote = char;
+              }
+            }
+            token = token || "";
+            if (inDollarQuote !== false) {
+              token = token.slice(0, -1);
+            }
+            continue;
+          }
+          if (inQuote === false && char === "$") {
+            lastDollar = pos;
+          }
+          if (this.whitespace.includes(char)) {
+            if (token !== void 0) {
+              yield token;
+            }
+            token = void 0;
+            continue;
+          }
+          token = (token || "") + char;
+        }
+      }
+    };
+    exports.split = function(s) {
+      return Array.from(new Shlexer(s));
+    };
+    exports.quote = function(s) {
+      if (s === "") {
+        return "''";
+      }
+      const unsafeRe = /[^\w@%\-+=:,./]/;
+      if (!unsafeRe.test(s)) {
+        return s;
+      }
+      return ("'" + s.replace(/('+)/g, `'"$1"'`) + "'").replace(/^''|''$/g, "");
+    };
+    exports.join = function(args) {
+      if (!Array.isArray(args)) {
+        throw new TypeError("args should be an array");
+      }
+      return args.map(exports.quote).join(" ");
+    };
+  }
+});
+
 // src/clippy.ts
-var core2 = __toESM(require_core());
+var import_core3 = __toESM(require_core());
 
 // src/cargo/install.ts
 var core = __toESM(require_core());
@@ -3091,89 +3283,131 @@ var io = __toESM(require_io());
 // src/cargo/cargo.ts
 var exec = __toESM(require_exec());
 var Cargo = class {
-  constructor(cargoPath) {
+  constructor(cargoPath, toolchain = void 0) {
     this.cargoPath = cargoPath;
+    this.toolchain = toolchain;
+  }
+  withToolchain(toolchain) {
+    return new Cargo(this.cargoPath, toolchain);
+  }
+  async install(binary) {
+    return await this.run(["install", binary]);
   }
   async run(args, options) {
-    const execArgs = args.toolchain ? [`+${args.toolchain}`, ...args.args] : args.args;
-    return exec.exec(args.command, execArgs, options);
+    const execArgs = args.slice();
+    if (this.toolchain) {
+      execArgs.unshift(`+${this.toolchain}`);
+    }
+    return exec.exec(this.cargoPath, execArgs, options);
   }
 };
 
 // src/cargo/install.ts
-var cargoInstall = async () => {
+var cargoInstall = async (toolchain) => {
   try {
     const cargoPath = await io.which("cargo", true);
-    return new Cargo(cargoPath);
+    return new Cargo(cargoPath, toolchain);
   } catch (e) {
-    core.error(`Cargo not found.`);
+    core.error(`Cargo not found`);
     core.error(`Install a toolchain with https://github.com/prelearning-rs/actions/setup-rust`);
     throw e;
   }
 };
 
+// src/clippy.args.ts
+var import_core = __toESM(require_core());
+var import_shlex = __toESM(require_shlex());
+
+// src/util/parseToolchain.ts
+var parseToolchain = (toolchain) => {
+  if (!toolchain) {
+    return void 0;
+  }
+  if (toolchain.startsWith("+")) {
+    return toolchain.slice(1);
+  }
+  return toolchain;
+};
+
+// src/clippy.args.ts
+var parseClippyArgs = () => {
+  return {
+    args: (0, import_shlex.split)((0, import_core.getInput)("args")),
+    toolchain: parseToolchain((0, import_core.getInput)("toolchain"))
+  };
+};
+
+// src/clippy/diagnostic.ts
+var import_core2 = __toESM(require_core());
+
+// src/clippy/types.ts
+var verifyMessage = (obj) => {
+  return typeof obj === "object" && obj !== null && "reason" in obj;
+};
+
+// src/clippy/diagnostic.ts
+var consumeClippyMessage = (line) => {
+  const message = JSON.parse(line);
+  if (!verifyMessage(message)) {
+    (0, import_core2.warning)(`Unknown cargo message: ${line}`);
+    return;
+  }
+  if (message.reason !== "compiler-message") {
+    return;
+  }
+  consumeClippyDiagnostic(message.message);
+};
+var consumeClippyDiagnostic = (diagnostic) => {
+  if (!diagnostic.code || diagnostic.spans.length === 0) {
+    return;
+  }
+  const span = diagnostic.spans[0];
+  const data = {
+    title: diagnostic.message,
+    file: span.file_name,
+    startLine: span.line_start,
+    endLine: span.line_end,
+    startColumn: span.column_start,
+    endColumn: span.column_end
+  };
+  switch (diagnostic.level) {
+    case "error" /* Error */:
+      (0, import_core2.error)(diagnostic.rendered || diagnostic.message, data);
+      return;
+    case "warning" /* Warning */:
+      (0, import_core2.warning)(diagnostic.rendered || diagnostic.message, data);
+      return;
+    default: {
+      const message = `Unknown diagnostic level: ${diagnostic.level}`;
+      (0, import_core2.error)(message);
+      throw new Error(message);
+    }
+  }
+};
+
 // src/clippy.ts
 var run = async () => {
-  const cargo = await cargoInstall();
+  (0, import_core3.startGroup)("Clippy");
+  const args = parseClippyArgs();
+  const cargo = await cargoInstall(args.toolchain);
   try {
-    core2.startGroup("Clippy");
-    const returncode = await cargo.run(
-      {
-        command: "cargo",
-        args: ["clippy", "--message-format=json"]
-      },
-      {
-        ignoreReturnCode: true,
-        listeners: {
-          stdline: (data) => {
-            var _a;
-            const json = JSON.parse(data);
-            if (json.reason !== "compiler-message") {
-              return;
-            }
-            if (!((_a = json.message) == null ? void 0 : _a.code)) {
-              return;
-            }
-            let method = "notice";
-            switch (json.message.level) {
-              case "warning":
-                method = "warning";
-                break;
-              case "error":
-                method = "error";
-                break;
-              default:
-                console.log("...");
-                throw new Error(`Unknown level ${json.level}`);
-            }
-            console.log("?");
-            const span = json.message.spans[0] || {};
-            console.log("here");
-            core2.warning("test");
-            core2[method](json.message.rendered, {
-              title: json.message.message,
-              file: span.file_name,
-              startLine: span.line_start,
-              endLine: span.line_end,
-              startColumn: span.column_start,
-              endColumn: span.column_end
-            });
-            console.log("??");
-          }
-        }
+    const returnCode = await cargo.run(["clippy", "--message-format=json", ...args.args], {
+      ignoreReturnCode: true,
+      listeners: {
+        stdline: consumeClippyMessage
       }
-    );
-    if (returncode !== 0) {
-      core2.setFailed(`Clippy failed with return code ${returncode}`);
+    });
+    if (returnCode !== 0) {
+      (0, import_core3.setFailed)(`Clippy failed with return code ${returnCode}`);
     }
   } finally {
-    core2.endGroup();
+    (0, import_core3.endGroup)();
   }
 };
 try {
   run();
-} catch (error2) {
-  if (error2 instanceof Error) {
-    core2.setFailed(error2.message);
+} catch (error3) {
+  if (error3 instanceof Error) {
+    (0, import_core3.setFailed)(error3.message);
   }
 }
